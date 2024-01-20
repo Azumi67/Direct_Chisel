@@ -295,7 +295,7 @@ def kharej5_t():
     os.system("clear")
     print('\033[92m ^ ^\033[0m')
     print('\033[92m(\033[91mO,O\033[92m)\033[0m')
-    print('\033[92m(   ) \033[96mKharej \033[93mIPV4 \033[92mTCP\033[0m')
+    print('\033[92m(   ) \033[93mIPV4 \033[92mTCP\033[0m')
     print('\033[92m "-"\033[93m════════════════════════════════════\033[0m')
     print("\033[93m───────────────────────────────────────\033[0m")
     print('1. \033[93mKharej\033[92m [1] \033[0m')
@@ -340,7 +340,7 @@ def kharej5_t6():
     os.system("clear")
     print('\033[92m ^ ^\033[0m')
     print('\033[92m(\033[91mO,O\033[92m)\033[0m')
-    print('\033[92m(   ) \033[96mKharej \033[93mIPV6 \033[92mTCP\033[0m')
+    print('\033[92m(   ) \033[93mIPV6 \033[92mTCP\033[0m')
     print('\033[92m "-"\033[93m════════════════════════════════════\033[0m')
     print("\033[93m───────────────────────────────────────\033[0m")
     print('1. \033[93mKharej\033[92m [1] \033[0m')
@@ -384,7 +384,7 @@ def kharej5_u():
     os.system("clear")
     print('\033[92m ^ ^\033[0m')
     print('\033[92m(\033[91mO,O\033[92m)\033[0m')
-    print('\033[92m(   ) \033[96mKharej \033[93mIPV4 \033[92mUDP\033[0m')
+    print('\033[92m(   ) \033[93mIPV4 \033[92mUDP\033[0m')
     print('\033[92m "-"\033[93m════════════════════════════════════\033[0m')
     print("\033[93m───────────────────────────────────────\033[0m")
     print('1. \033[93mKharej\033[92m [1] \033[0m')
@@ -429,7 +429,7 @@ def kharej5_u6():
     os.system("clear")
     print('\033[92m ^ ^\033[0m')
     print('\033[92m(\033[91mO,O\033[92m)\033[0m')
-    print('\033[92m(   ) \033[96mKharej \033[93mIPV6 \033[92mUDP\033[0m')
+    print('\033[92m(   ) \033[93mIPV6 \033[92mUDP\033[0m')
     print('\033[92m "-"\033[93m════════════════════════════════════\033[0m')
     print("\033[93m───────────────────────────────────────\033[0m")
     print('1. \033[93mKharej\033[92m [1] \033[0m')
@@ -645,7 +645,7 @@ def iran_ipv41_udp():
         
     
     print("\033[93m───────────────────────────\033[0m")
-    display_notification("\033[93mConfiguring \033[96mKHAREJ\033[0m")
+    display_notification("\033[93mConfiguring \033[96mIRAN\033[0m")
     print("\033[93m───────────────────────────\033[0m")
     
     num_configs = int(input("\033[93mEnter the \033[92mnumber\033[93m of \033[96mKharej\033[93m Configs: \033[0m"))
@@ -830,6 +830,7 @@ WantedBy=multi-user.target
 
     except subprocess.CalledProcessError as e:
         display_error("\033[91mFailed in creating IRAN service {}/{}. Error: {}\033[0m".format(config_number, e.output))
+        
 def iran_ipv61_udp():
     forward()
     if not os.path.isfile("/root/chisel"):

@@ -60,7 +60,23 @@
 </div>
 
 ----------------------------
+  <div align="right">
+  <details>
+    <summary><strong><img src="https://github.com/Azumi67/FRP_Reverse_Loadbalance/assets/119934376/ae5b07b8-4d5e-4302-a31f-dec2a79a76b5" alt="Image"> ویدیوهای آموزشی</strong></summary>
+    
+------------------------------------   
 
+- **ویدیوی آموزشی توسط 69** 
+<div align="right">
+  <a href="https://www.youtube.com/watch?v=a3yGtZtBv6o">
+    <img src="https://img.youtube.com/vi/a3yGtZtBv6o/0.jpg" alt="Video Title" width="300">
+  </a>
+</div>
+
+  </details>
+</div>
+
+---------------
   
   ![6348248](https://github.com/Azumi67/PrivateIP-Tunnel/assets/119934376/398f8b07-65be-472e-9821-631f7b70f783)
 **آموزش**

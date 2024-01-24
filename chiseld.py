@@ -1456,6 +1456,7 @@ def kharej_ipv4_udp():
     
 def res_chisel3():
     delete_cron()
+    delete_cron2()
     if subprocess.call("test -f /etc/reschiseld.sh", shell=True) == 0:
         subprocess.call("rm /etc/reschiseld.sh", shell=True)
 
@@ -1463,6 +1464,7 @@ def res_chisel3():
         f.write("#!/bin/bash\n")
         f.write("systemctl daemon-reload\n")
         f.write("sudo journalctl --vacuum-size=1M\n")
+        f.write("sudo kill -9 $(pgrep chisel)\n")
         print("\033[93m───────────────────────────\033[0m")
         print("\033[93mReset timer Questions\033[0m")
         print("\033[93m───────────────────────────\033[0m") 
@@ -1475,8 +1477,8 @@ def res_chisel3():
                 f.write(f"systemctl restart irand_{j}_{i}\n")            
 
     subprocess.call("chmod +x /etc/reschiseld.sh", shell=True)
-    hours = "2"
-    cron_entry = f"0 */{hours} * * * /etc/reschiseld.sh"
+    hours = "30"
+    cron_entry = f"*/{hours} * * * * /etc/reschiseld.sh"
     existing_crontab = ""
     try:
         existing_crontab = subprocess.check_output("crontab -l", shell=True).decode()
@@ -1493,18 +1495,20 @@ def res_chisel3():
 
 def res_chisel2():
     delete_cron()
+    delete_cron2()
     if subprocess.call("test -f /etc/reschiseld.sh", shell=True) == 0:
         subprocess.call("rm /etc/reschiseld.sh", shell=True)
 
     with open("/etc/reschiseld.sh", "w") as f:
         f.write("#!/bin/bash\n")
         f.write("sudo systemctl daemon-reload\n")
+        f.write("sudo kill -9 $(pgrep chisel)\n")
         f.write("sudo systemctl restart kharejd_1\n")
         f.write("sudo journalctl --vacuum-size=1M\n")
 
     subprocess.call("chmod +x /etc/reschiseld.sh", shell=True)
-    hours = "2"
-    cron_entry = f"0 */{hours} * * * /etc/reschiseld.sh"
+    hours = "30"
+    cron_entry = f"*/{hours} * * * * /etc/reschiseld.sh"
     existing_crontab = ""
 
     try:
@@ -1593,12 +1597,14 @@ def kharej_ipv6_udp():
         
 def res_chisel1():
     delete_cron()
+    delete_cron2()
     if subprocess.call("test -f /etc/reschiseld.sh", shell=True) == 0:
         subprocess.call("rm /etc/reschiseld.sh", shell=True)
 
     with open("/etc/reschiseld.sh", "w") as f:
         f.write("#!/bin/bash\n")
         f.write("systemctl daemon-reload\n")
+        f.write("sudo kill -9 $(pgrep chisel)\n")
         f.write("sudo journalctl --vacuum-size=1M\n")
         
         print("\033[93m───────────────────────────\033[0m")
@@ -1611,8 +1617,8 @@ def res_chisel1():
         print("\033[93m───────────────────────────\033[0m")
 
     subprocess.call("chmod +x /etc/reschiseld.sh", shell=True)
-    hours = "2"
-    cron_entry = f"0 */{hours} * * * /etc/reschiseld.sh"
+    hours = "30"
+    cron_entry = f"*/{hours} * * * * /etc/reschiseld.sh"
     existing_crontab = ""
     try:
         existing_crontab = subprocess.check_output("crontab -l", shell=True).decode()

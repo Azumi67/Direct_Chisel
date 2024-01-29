@@ -256,9 +256,9 @@ def hourz():
     delete_cron2()
 
     if hours == 1:
-        cron_entry = "0 * * * * /etc/reschiseld.sh"
+        cron_entry = "0 * * * * /bin/bash /etc/reschiseld.sh"
     else:
-        cron_entry = f"0 */{hours} * * * /etc/reschiseld.sh"
+        cron_entry = f"0 */{hours} * * * /bin/bash /etc/reschiseld.sh"
 
     try:
         existing_crontab = subprocess.check_output("crontab -l", shell=True).decode()
@@ -277,7 +277,7 @@ def minutes():
     delete_cron()
     delete_cron2()
 
-    cron_entry = f"*/{minutes} * * * * /etc/reschiseld.sh"
+    cron_entry = f"*/{minutes} * * * * /bin/bash /etc/reschiseld.sh"
 
     try:
         existing_crontab = subprocess.check_output("crontab -l", shell=True).decode()
@@ -1478,7 +1478,7 @@ def res_chisel3():
 
     subprocess.call("chmod +x /etc/reschiseld.sh", shell=True)
     hours = "30"
-    cron_entry = f"*/{hours} * * * * /etc/reschiseld.sh"
+    cron_entry = f"*/{hours} * * * * /bin/bash /etc/reschiseld.sh"
     existing_crontab = ""
     try:
         existing_crontab = subprocess.check_output("crontab -l", shell=True).decode()
@@ -1508,7 +1508,7 @@ def res_chisel2():
 
     subprocess.call("chmod +x /etc/reschiseld.sh", shell=True)
     hours = "30"
-    cron_entry = f"*/{hours} * * * * /etc/reschiseld.sh"
+    cron_entry = f"*/{hours} * * * * /bin/bash /etc/reschiseld.sh"
     existing_crontab = ""
 
     try:
@@ -1618,7 +1618,7 @@ def res_chisel1():
 
     subprocess.call("chmod +x /etc/reschiseld.sh", shell=True)
     hours = "30"
-    cron_entry = f"*/{hours} * * * * /etc/reschiseld.sh"
+    cron_entry = f"*/{hours} * * * * /bin/bash /etc/reschiseld.sh"
     existing_crontab = ""
     try:
         existing_crontab = subprocess.check_output("crontab -l", shell=True).decode()
@@ -1671,6 +1671,136 @@ WantedBy=multi-user.target
 
 def delete_cron():
     entries_to_delete = [
+        "0 * * * * /bin/bash /etc/reschiseld.sh",  
+        "0 */2 * * * /bin/bash /etc/reschiseld.sh",  
+        "0 */3 * * * /bin/bash /etc/reschiseld.sh",  
+        "0 */4 * * * /bin/bash /etc/reschiseld.sh",  
+        "0 */5 * * * /bin/bash /etc/reschiseld.sh", 
+        "0 */6 * * * /bin/bash /etc/reschiseld.sh", 
+        "0 */7 * * * /bin/bash /etc/reschiseld.sh", 
+        "0 */8 * * * /bin/bash /etc/reschiseld.sh", 
+        "0 */9 * * * /bin/bash /etc/reschiseld.sh", 
+        "0 */10 * * * /bin/bash /etc/reschiseld.sh", 
+        "0 */11 * * * /bin/bash /etc/reschiseld.sh", 
+        "0 */12 * * * /bin/bash /etc/reschiseld.sh", 
+        "0 */13 * * * /bin/bash /etc/reschiseld.sh", 
+        "0 */14 * * * /bin/bash /etc/reschiseld.sh", 
+        "0 */15 * * * /bin/bash /etc/reschiseld.sh", 
+        "0 */16 * * * /bin/bash /etc/reschiseld.sh", 
+        "0 */17 * * * /bin/bash /etc/reschiseld.sh", 
+        "0 */18 * * * /bin/bash /etc/reschiseld.sh", 
+        "0 */19 * * * /bin/bash /etc/reschiseld.sh", 
+        "0 */20 * * * /bin/bash /etc/reschiseld.sh", 
+        "0 */21 * * * /bin/bash /etc/reschiseld.sh", 
+        "0 */22 * * * /bin/bash /etc/reschiseld.sh", 
+        "0 */23 * * * /bin/bash /etc/reschiseld.sh",  
+    ]
+
+    existing_crontab = ""
+    try:
+        existing_crontab = subprocess.check_output("crontab -l", shell=True).decode()
+    except subprocess.CalledProcessError:
+        print("\033[91mNo existing cron found!\033[0m")
+        return
+
+    new_crontab = existing_crontab
+    for entry in entries_to_delete:
+        if entry in existing_crontab:
+            new_crontab = new_crontab.replace(entry, "")
+
+    if new_crontab != existing_crontab:
+        subprocess.call(f"echo '{new_crontab}' | crontab -", shell=True)
+        display_notification("\033[92mDeleting Previous Crons..\033[0m")
+    else:
+        print("\033[91mCron doesn't exist, moving on..!\033[0m")
+
+def delete_cron2():
+    entries_to_delete = [
+        "*/1 * * * * /bin/bash /etc/reschiseld.sh",  
+        "*/2 * * * * /bin/bash /etc/reschiseld.sh",  
+        "*/3 * * * * /bin/bash /etc/reschiseld.sh",  
+        "*/4 * * * * /bin/bash /etc/reschiseld.sh",  
+        "*/5 * * * * /bin/bash /etc/reschiseld.sh", 
+        "*/6 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/7 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/8 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/9 * * * * /bin/bash /etc/reschiseld.sh",		
+        "*/10 * * * * /bin/bash /etc/reschiseld.sh",  
+        "*/11 * * * * /bin/bash /etc/reschiseld.sh",  
+        "*/12 * * * * /bin/bash /etc/reschiseld.sh", 
+        "*/13 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/14 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/15 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/16 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/17 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/18 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/19 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/20 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/21 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/22 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/23 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/24 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/25 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/26 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/27 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/28 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/29 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/30 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/31 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/32 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/33 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/34 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/35 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/36 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/37 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/38 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/39 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/40 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/41 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/42 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/43 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/44 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/45 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/46 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/47 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/48 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/49 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/50 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/51 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/52 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/53 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/54 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/55 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/56 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/57 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/58 * * * * /bin/bash /etc/reschiseld.sh",
+        "*/59 * * * * /bin/bash /etc/reschiseld.sh",
+        
+        
+    ]
+
+    existing_crontab = ""
+    try:
+        existing_crontab = subprocess.check_output("crontab -l", shell=True).decode()
+    except subprocess.CalledProcessError:
+        print("\033[91mNo existing cron found!\033[0m")
+        return
+
+    new_crontab = existing_crontab
+    for entry in entries_to_delete:
+        if entry in existing_crontab:
+            new_crontab = new_crontab.replace(entry, "")
+
+    if new_crontab != existing_crontab:
+        subprocess.call(f"echo '{new_crontab}' | crontab -", shell=True)
+        display_notification("\033[92mDeleting Previous Crons..\033[0m")
+    else:
+        print("\033[91mCron doesn't exist, moving on..!\033[0m")  
+        
+        
+ 
+def delete_cron3():
+    entries_to_delete = [
         "0 * * * * /etc/reschiseld.sh",  
         "0 */2 * * * /etc/reschiseld.sh",  
         "0 */3 * * * /etc/reschiseld.sh",  
@@ -1714,7 +1844,7 @@ def delete_cron():
     else:
         print("\033[91mCron doesn't exist, moving on..!\033[0m")
 
-def delete_cron2():
+def delete_cron4():
     entries_to_delete = [
         "*/1 * * * * /etc/reschiseld.sh",  
         "*/2 * * * * /etc/reschiseld.sh",  
@@ -1796,10 +1926,7 @@ def delete_cron2():
         display_notification("\033[92mDeleting Previous Crons..\033[0m")
     else:
         print("\033[91mCron doesn't exist, moving on..!\033[0m")  
-        
-        
- 
-
+		
 def chisel_status():
     os.system("clear")
     print('\033[92m ^ ^\033[0m')
@@ -2070,6 +2197,8 @@ def remove_chisel4():
     print("\033[93m───────────────────────────────────────\033[0m")
     delete_cron()
     delete_cron2()
+    delete_cron3()
+    delete_cron4()
 
     try:
         if subprocess.call("test -f /root/chisel", shell=True) == 0:
@@ -2109,6 +2238,8 @@ def remove_chisel3():
     print("\033[93m───────────────────────────────────────\033[0m")
     delete_cron()
     delete_cron2()
+    delete_cron3()
+    delete_cron4()
 
     try:
         if subprocess.call("test -f /root/chisel", shell=True) == 0:
@@ -2156,6 +2287,8 @@ def remove_chisel():
     print("\033[93m───────────────────────────────────────\033[0m")
     delete_cron()
     delete_cron2()
+    delete_cron3()
+    delete_cron4()
 
     try:
         if subprocess.call("test -f /root/chisel", shell=True) == 0:

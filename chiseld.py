@@ -1463,8 +1463,9 @@ def res_chisel3():
     with open("/etc/reschiseld.sh", "w") as f:
         f.write("#!/bin/bash\n")
         f.write("systemctl daemon-reload\n")
-        f.write("sudo journalctl --vacuum-size=1M\n")
-        f.write("sudo kill -9 $(pgrep chisel)\n")
+        f.write("sudo journalctl --vacuum-size=1M\n")	    
+        f.write("pids=$(pgrep chisel)\n")
+        f.write("sudo kill -9 $pids\n")
         print("\033[93m───────────────────────────\033[0m")
         print("\033[93mReset timer Questions\033[0m")
         print("\033[93m───────────────────────────\033[0m") 
@@ -1502,7 +1503,8 @@ def res_chisel2():
     with open("/etc/reschiseld.sh", "w") as f:
         f.write("#!/bin/bash\n")
         f.write("sudo systemctl daemon-reload\n")
-        f.write("sudo kill -9 $(pgrep chisel)\n")
+        f.write("pids=$(pgrep chisel)\n")
+        f.write("sudo kill -9 $pids\n")
         f.write("sudo systemctl restart kharejd_1\n")
         f.write("sudo journalctl --vacuum-size=1M\n")
 
@@ -1604,7 +1606,8 @@ def res_chisel1():
     with open("/etc/reschiseld.sh", "w") as f:
         f.write("#!/bin/bash\n")
         f.write("systemctl daemon-reload\n")
-        f.write("sudo kill -9 $(pgrep chisel)\n")
+        f.write("pids=$(pgrep chisel)\n")
+        f.write("sudo kill -9 $pids\n")
         f.write("sudo journalctl --vacuum-size=1M\n")
         
         print("\033[93m───────────────────────────\033[0m")
